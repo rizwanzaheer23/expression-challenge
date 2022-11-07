@@ -1,0 +1,5 @@
+Steps:
+
+1 - Install Docker
+2 - run command 'docker compose up' to start the mongo DB server
+3 - Continue to back-end folder to start the api server

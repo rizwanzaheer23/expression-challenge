@@ -1,5 +1,6 @@
 Steps:
 
 1 - Install Docker
-2 - run command 'docker compose up' to start the mongo DB server
-3 - Continue to back-end folder to start the api server
+2 - Copy contents of dotenvExample to .env file and replace the values to your own.
+3 - Run command 'docker compose up' to start the mongo DB server
+4 - Continue to back-end folder to start the api server (Read the ReadMe file for further instructions)

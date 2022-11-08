@@ -1,5 +1,6 @@
 Steps:
 
 1 - Run 'npm install' to install dependencies
-2 - Make sure .env files exist with secrets
+2 - Make sure to copy contents of dotenvExample to a .env file.
 3 - Run 'npm run start' to start
+4 - Move to front end folder to follow further instructions.

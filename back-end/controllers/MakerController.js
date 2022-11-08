@@ -1,5 +1,16 @@
 const Maker = require("../models/MakerModel");
 
+const makes = [
+  { name: "Honda" },
+  { name: "Suzuki" },
+  { name: "Changan" },
+  { name: "Toyota" },
+];
+
+const getStaticMakes = (req, res) => {
+  return res.send(makes);
+};
+
 const getAllMakers = async (req, res) => {
   try {
     const data = await Maker.find();
@@ -51,4 +62,5 @@ module.exports = {
   addMaker,
   updateMaker,
   deleteMaker,
+  getStaticMakes,
 };

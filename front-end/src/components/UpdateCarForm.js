@@ -14,7 +14,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { MyLoader } from "./MyLoader";
 import { WysiwygEditor } from "./WysiwygEditor";
-import { convertToRaw } from "draft-js";
+import {
+  ContentState,
+  convertFromHTML,
+  convertToRaw,
+  EditorState,
+} from "draft-js";
 import draftToHtml from "draftjs-to-html";
 
 export const UpdateCarForm = ({ item, closeModal, getData, show }) => {
@@ -22,7 +27,18 @@ export const UpdateCarForm = ({ item, closeModal, getData, show }) => {
   const [make, setMake] = useState(item?.make);
   const [model, setModel] = useState(item?.prodYear);
   const [features, setFeatures] = useState(item?.features);
-  const [editorState, setEditorState] = useState();
+  const [editorState, setEditorState] = useState(() => {
+    if (item.richText === undefined) return null;
+
+    const blocksFromHTML = convertFromHTML(item?.richText);
+
+    const state = ContentState.createFromBlockArray(
+      blocksFromHTML.contentBlocks,
+      blocksFromHTML.entityMap
+    );
+
+    return EditorState.createWithContent(state);
+  });
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -189,7 +205,7 @@ const MakersDropDown = ({ make, setMake }) => {
   const getMakes = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/makers`
+        `${process.env.REACT_APP_BASE_URL}/makers/static`
       );
 
       const options = [];

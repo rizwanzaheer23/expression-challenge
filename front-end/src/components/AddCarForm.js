@@ -188,7 +188,7 @@ const MakersDropDown = ({ make, setMake }) => {
   const getMakes = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/makers`
+        `${process.env.REACT_APP_BASE_URL}/makers/static`
       );
 
       const options = [];

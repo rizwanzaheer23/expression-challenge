@@ -53,7 +53,6 @@ function App() {
   const getData = async () => {
     try {
       setLoading(true);
-      setData([]);
 
       const response = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/cars`
@@ -93,21 +92,19 @@ function App() {
       <EuiFlexGroup direction="column">
         <PageTitle>Welcome to Cars Dashboard</PageTitle>
         {loading && <MyLoader />}
-        {data.length > 0 && (
-          <>
-            <EuiFlexGroup justifyContent="flexEnd">
-              <EuiButton color="primary" fill onClick={openCreateModal}>
-                Add Car
-              </EuiButton>
-            </EuiFlexGroup>
-            <MyTable
-              openEditModal={openEditModal}
-              items={data}
-              getData={getData}
-              openDataModal={openDataModal}
-            />
-          </>
-        )}
+        <>
+          <EuiFlexGroup justifyContent="flexEnd">
+            <EuiButton color="primary" fill onClick={openCreateModal}>
+              Add Car
+            </EuiButton>
+          </EuiFlexGroup>
+          <MyTable
+            openEditModal={openEditModal}
+            items={data}
+            getData={getData}
+            openDataModal={openDataModal}
+          />
+        </>
       </EuiFlexGroup>
     </div>
   );
